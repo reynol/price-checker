@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="local_assets">
+          <script type="text/javascript" src="/pricechecker/static/angular.js" />
+          <link rel="stylesheet" type="text/css" href="/pricechecker/static/pricechecker.css"/>
+          <script type="text/javascript" src="/pricechecker/static/bigtext.js" />
+          <script type="text/javascript" src="/pricechecker/static/pricechecker.js" />
+ </template>
+
+<template id="index" name="POS Index">&lt;!DOCTYPE html&gt;
+<html>
+    <head>
+        <title>Checador de precios</title>
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta http-equiv="content-type" content="text/html, charset=utf-8" />
+        <meta name="viewport" content=" width=1024, user-scalable=no"/>
+        <meta name="apple-mobile-web-app-capable" content="yes"/>
+        <meta name="mobile-web-app-capable" content="yes"/>
+
+        <style> body { background: #222; } </style>
+
+        <script type="text/javascript">
+            var odoo = {
+                csrf_token: "<t t-esc="request.csrf_token(None)"/>",
+                session_info: <t t-raw="session_info"/>,
+            };
+        </script>
+
+      <t t-call-assets="web.assets_common" t-css="true"/>
+      <t t-call-assets="web.assets_backend" t-css="true"/>
+      <t t-call-assets="web_editor.summernote" t-css="true"/>
+      <t t-call-assets="web_editor.assets_editor" t-css="true"/>
+      <t t-call-assets="pricechecker.local_assets" t-css="true"/>
+
+        <script type="text/javascript" id="loading-script" t-raw="init">
+            odoo.define('web.web_client', function (require) {
+            var WebClient = require('web.AbstractWebClient');
+              var web_client = new WebClient();
+
+              web_client._title_changed = function() {};
+              web_client.show_application = function() {
+
+              };
+
+              $(function () {
+                  web_client.setElement($(document.body));
+                  web_client.start();
+              });
+              return web_client;
+            });
+        </script>
+    </head>
+    <body>
+      <div  id ="elid" ng-app="myApp" ng-controller="myCtrl">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                  <button data-toggle="modal" data-target="#myModal" type="button" class="btn btn-success btn-lg btn-block">Actualizar Producto</button>
+                </div>
+                <div class="col-md-4"></div>
+              </div>
+              <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="centering text-center">
+                      <div id="bigtext_name">
+                         <span id="name">{{product.params.name}}</span>
+                      </div>
+                        <div id="bigtext">
+                           <span id="price">{{product.params.price | currency}}</span>
+                        </div>
+                    </div>
+                </div>
+
+              </div>
+
+
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">x</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="email">Codigo de Barras:</label>
+          <input ng-model="current_product.params.barcode" type="text" class="form-control" placeholder="Ingresar codigo de barras"  id="barcode"/>
+        </div>
+        <div class="form-group">
+          <label for="pwd">Nombre:</label>
+          <input ng-model="current_product.params.name" type="text" class="form-control"  placeholder="Ingresar nombre del producto"  id="name"/>
+        </div>
+        <div class="form-group">
+          <label for="pwd">Precio de venta:</label>
+          <span class="input-group-addon">$</span>
+          <input ng-model="current_product.params.price" type="text" class="form-control" placeholder="Asignar precio de venta" id="price"/>
+        </div>
+        <div class="form-group">
+          <label for="pwd">Precio de compra:</label>
+          <span class="input-group-addon">$</span>
+          <input ng-model="current_product.params.standard_price" type="text" class="form-control" placeholder="Asignar precio de compra" id="standard_price"/>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="row">
+          <div class="col-md-6">
+            <button id="add-price" type="button" class="btn btn-primary btn-lg btn-block" data-dismiss="modal">Cancelar</button>
+          </div>
+          <div class="col-md-6">
+            <button id="save-product" type="button" class="btn btn-success btn-lg btn-block" data-dismiss="modal">Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+        </div>
+    </body>
+</html>
+</template>
+</odoo>

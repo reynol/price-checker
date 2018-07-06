@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="javascripts">
+            <script type="text/javascript" src="/pricechecker/static/pricechecker.js" />
+            <script type="text/javascript" src="/pricechecker/static/pricechecker2.js" />
+   </template>
+</odoo>

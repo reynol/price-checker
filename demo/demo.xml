@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <record id="padilla" model="pricechecker.price">
+            <field name="name">Diana Ortiz</field>
+        </record>
+        <record id="carroll" model="pricechecker.price">
+            <field name="name">Jay Romo</field>
+        </record>
+        <record id="vaughn" model="pricechecker.price">
+            <field name="name">Zay Batum</field>
+        </record>
+    </data>
+</odoo>

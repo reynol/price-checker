@@ -1,0 +1,33 @@
+html, body{height:100%; margin:0;padding:0}
+
+.container-fluid{
+  /* Firefox */
+height: -moz-calc(100% - 44px);
+/* WebKit */
+height: -webkit-calc(100% - 44px);
+/* Opera */
+height: -o-calc(100% - 44px);
+/* Standard */
+height: calc(100% - 44px);
+  display:table;
+  width: 100%;
+  padding: 0;
+}
+
+.row-fluid {
+  /* Firefox */
+height: -moz-calc(100% - 44px);
+/* WebKit */
+height: -webkit-calc(100% - 44px);
+/* Opera */
+height: -o-calc(100% - 44px);
+/* Standard */
+height: calc(100% - 44px);
+  display:table-cell; vertical-align: middle;}
+
+
+
+.centering {
+  float:none;
+  margin:0 auto;
+}
